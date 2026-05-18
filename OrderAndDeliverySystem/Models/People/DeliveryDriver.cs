@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using OrderAndDeliverySystem.Models.Delivery;
 
@@ -12,6 +13,8 @@ namespace OrderAndDeliverySystem.Models.People
 
         public DeliveryDriver(int personID, string name, string email, string password, string phoneNumber, int staffID, string role, bool availability) : base(personID, name, email, password, phoneNumber, staffID, role, availability)
         {
+            currentLocation = string.Empty;
+            licenceNumber = string.Empty;
         }
 
         public string LicenceNumber
@@ -48,8 +51,7 @@ namespace OrderAndDeliverySystem.Models.People
 
         public DeliverySchedule ViewDeliverySchedule()
         {
-
-            return null;
+            return new DeliverySchedule(0, DateTime.UtcNow, new List<Delivery>(), this, "Unassigned");
         }
     }
 }

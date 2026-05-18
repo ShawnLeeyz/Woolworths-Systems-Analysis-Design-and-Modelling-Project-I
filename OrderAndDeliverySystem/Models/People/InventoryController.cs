@@ -31,7 +31,7 @@ namespace OrderAndDeliverySystem.Models.People
 
         public InventoryReport GenerateReport()
         {
-            return null;
+            return new InventoryReport();
         }
     }
 }

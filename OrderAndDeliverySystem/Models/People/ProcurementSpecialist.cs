@@ -21,12 +21,12 @@ namespace OrderAndDeliverySystem.Models.People
 
         public void CreatePurchaseOrder(Supplier supplier, Product product, int quantity)
         {
-
+            
         }
 
         public ProcurementReport GenerateReport()
         {
-            return null;
+            return new ProcurementReport();
         }
 
         public void ViewProductInventory()

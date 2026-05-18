@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj": {}
+    "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\Woolworths-Systems-Analysis-Design-and-Modelling-Project-I\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj": {
+    "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\Woolworths-Systems-Analysis-Design-and-Modelling-Project-I\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj",
+        "projectUniqueName": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\Woolworths-Systems-Analysis-Design-and-Modelling-Project-I\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj",
         "projectName": "OrderAndDeliverySystem",
-        "projectPath": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj",
+        "projectPath": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\Woolworths-Systems-Analysis-Design-and-Modelling-Project-I\\OrderAndDeliverySystem\\OrderAndDeliverySystem.csproj",
         "packagesPath": "C:\\Users\\yzsha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\OrderAndDeliverySystem\\obj\\",
+        "outputPath": "C:\\Users\\yzsha\\OneDrive\\Documents\\Online Ordering and Delivery System\\Woolworths-Systems-Analysis-Design-and-Modelling-Project-I\\OrderAndDeliverySystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,12 @@
       "frameworks": {
         "net10.0-windows7.0": {
           "targetAlias": "net10.0-windows",
+          "dependencies": {
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
