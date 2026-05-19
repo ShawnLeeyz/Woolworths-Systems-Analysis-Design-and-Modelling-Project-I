@@ -2,19 +2,33 @@ using System;
 
 namespace OrderAndDeliverySystem.Models.Notifications
 {
-    public abstract class Notification
+    // It is the base attributes that all notifications have
+    public class Notification
     {
         private int notificationID;
         private string message;        
-        private string type;
+        private NotificationType type;
         private DateTime sentAt;
 
-        public Notification(int notificationID, string message, string type)
+        private int staffID;
+
+        public Notification(int notificationID, string message, NotificationType type, int staffID)
         {
             this.notificationID = notificationID;
             this.message = message;
             this.type = type;
             this.sentAt = DateTime.Now;
+            this.staffID = staffID;
+        }
+
+        // This constructor is used when retriving all attributes which includes sentAt
+        public Notification(int notificationID, string message, NotificationType type, DateTime sentAt, int staffID)
+        {
+            this.notificationID = notificationID;
+            this.message = message;
+            this.type = type;
+            this.sentAt = sentAt;
+            this.staffID = staffID;
         }
 
         public int NotificationID
@@ -25,12 +39,22 @@ namespace OrderAndDeliverySystem.Models.Notifications
         public string Message
         {
             get { return message; }
+            set { message = value; }
         }
 
-        public string Type
+        public NotificationType Type
         {
             get { return type; }
         }
 
+        public DateTime SentAt
+        {
+            get { return sentAt; }
+        }
+
+        public int StaffID
+        {
+            get { return staffID; }
+        }
     }
 }
