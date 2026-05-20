@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using OrderAndDeliverySystem.Models.Products;
 using OrderAndDeliverySystem.Models.SupplyChain;
 using OrderAndDeliverySystem.Models.Reports;
+using OrderAndDeliverySystem.Services;
 
 namespace OrderAndDeliverySystem.Models.People
 {
@@ -9,7 +10,8 @@ namespace OrderAndDeliverySystem.Models.People
     {
         private List<int> assignedStoreLocations;
 
-        public ProcurementSpecialist() : base(0, string.Empty, string.Empty, string.Empty, string.Empty, 0, string.Empty, true)
+        public ProcurementSpecialist(int personID, string name, string email, string password, int staffID, bool isAvailable)
+            : base(personID, name, email, password, staffID, "ProcurementSpecialist", isAvailable)
         {
             assignedStoreLocations = new List<int>();
         }
@@ -21,12 +23,12 @@ namespace OrderAndDeliverySystem.Models.People
 
         public void CreatePurchaseOrder(Supplier supplier, Product product, int quantity)
         {
-            
+
         }
 
         public ProcurementReport GenerateReport()
         {
-            return new ProcurementReport();
+            return null;
         }
 
         public void ViewProductInventory()

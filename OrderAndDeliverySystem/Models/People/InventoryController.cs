@@ -1,19 +1,19 @@
 using System.Collections.Generic;
-using OrderAndDeliverySystem.Models.Products;
 using OrderAndDeliverySystem.Models.SupplyChain;
 using OrderAndDeliverySystem.Models.Reports;
+using OrderAndDeliverySystem.Services;
 
 namespace OrderAndDeliverySystem.Models.People
 {
-    public class InventoryController
+    public class InventoryController : Staff
     {
         private List<int> assignedStoreLocations;
 
-        public InventoryController()
+        public InventoryController(int personID, string name, string email, string password, int staffID, bool isAvailable)
+            : base(personID, name, email, password, staffID, "InventoryController", isAvailable)
         {
             assignedStoreLocations = new List<int>();
         }
-
         public List<int> GetAssignedStoreLocations()
         {
             return assignedStoreLocations;
@@ -31,8 +31,7 @@ namespace OrderAndDeliverySystem.Models.People
 
         public InventoryReport GenerateReport()
         {
-            return new InventoryReport();
+            return null;
         }
     }
 }
-

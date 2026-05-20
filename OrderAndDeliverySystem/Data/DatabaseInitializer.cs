@@ -68,7 +68,9 @@ namespace OrderAndDeliverySystem.Data
                 INSERT INTO Staff (PersonId, Name, Email, Password, Role, IsAvailable) VALUES
                     (101, 'Staff1', 'shift.manager', '123', 'ShiftManager', 1),
                     (102, 'Staff2', 'store.ops', '123', 'StoreOperations', 1),
-                    (103, 'Staff3', 'store.ops1', '123', 'StoreOperations', 1);
+                    (103, 'Staff3', 'store.ops1', '123', 'StoreOperations', 1),
+                    (104, 'Staff4', 'procurement.specialist', '123', 'ProcurementSpecialist', 1),
+                    (105, 'Staff5', 'inventory.controller', '123', 'InventoryController', 1);
 
                 INSERT INTO Tasks (TaskId, Description, DeadlineAt, Status, CreatedAt, AssignedStaffId) VALUES
                     (2001, 'Pick and pack order 1001', '2026-05-19T08:30:00Z', 'Assigned', '2026-05-18T20:00:00Z', 2),

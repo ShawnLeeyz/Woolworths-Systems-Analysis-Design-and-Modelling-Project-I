@@ -15,7 +15,7 @@ namespace OrderAndDeliverySystem.Models.Reports
         private string reportPeriod;
 
 
-        // Default constructor for the ProcurementReportCreator class, since in factory method,
+        // Default constructor for the InventoryReportCreator class, since in factory method,
         // the createReport method needs to have no parameters could its the base template method for initalizing the reports
         public InventoryReport() : base(){}
 

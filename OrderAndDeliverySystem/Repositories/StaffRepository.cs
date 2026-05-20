@@ -54,10 +54,20 @@ namespace OrderAndDeliverySystem.Data.Repositories
             {
                 return new StoreOperationStaff(personId, name, email, password, staffId, isAvailable);
             }
+
+            else if(role == "ProcurementSpecialist")
+            {
+                return new ProcurementSpecialist(personId, name, email, password, staffId, isAvailable);
+            }
+            else if(role == "InventoryController")
+            {
+                return new InventoryController(personId, name, email, password, staffId, isAvailable);
+            }
             else
             {
                 throw new Exception("Invalid role in database");
             }
+            
         }
 
         // This method retrieves all staff members from the database and returns them as a list of Staff objects    

@@ -48,7 +48,7 @@ namespace OrderAndDeliverySystem.Forms
             LoadNotifications();
         }
 
-            // Assign task button
+        // Assign task button
         private void btnAssignTask_Click(object sender, EventArgs e)
         {
             // TODO: open AssignTaskForm
@@ -57,6 +57,7 @@ namespace OrderAndDeliverySystem.Forms
             LoadTasks();
         }
 
+        // Reassign task button
         private void btnReassignTask_Click(object sender, EventArgs e)
         {
             // TODO: open ReassignTaskForm

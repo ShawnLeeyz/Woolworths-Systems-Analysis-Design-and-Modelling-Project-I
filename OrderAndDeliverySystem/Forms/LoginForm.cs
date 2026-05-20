@@ -50,6 +50,19 @@ namespace OrderAndDeliverySystem.Forms
                 form.Show();
                 this.Hide();
             }
+
+            else if(staff.Role == "ProcurementSpecialist")
+            {
+                ProcurementSpecialistForm form = new ProcurementSpecialistForm(staff);
+                form.Show();
+                this.Hide();
+            }
+            else if (staff.Role == "InventoryController")
+            {
+                InventoryControllerForm form = new InventoryControllerForm(staff);
+                form.Show();
+                this.Hide();
+            }
             else
             {
                 MessageBox.Show("Role not supported yet.", "Info");

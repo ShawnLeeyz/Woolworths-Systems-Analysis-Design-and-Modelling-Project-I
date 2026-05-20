@@ -32,6 +32,7 @@
             btnAssignTask = new Button();
             btnReassignTask = new Button();
             btnRefresh = new Button();
+            btnGenerateReport = new Button();
             lstNotifications = new ListBox();
             label1 = new Label();
             label2 = new Label();
@@ -117,6 +118,7 @@
             Controls.Add(label1);
             Controls.Add(lstNotifications);
             Controls.Add(btnRefresh);
+            Controls.Add(btnGenerateReport);
             Controls.Add(btnReassignTask);
             Controls.Add(btnAssignTask);
             Controls.Add(dgvTasks);
@@ -133,6 +135,7 @@
         private Button btnAssignTask;
         private Button btnReassignTask;
         private Button btnRefresh;
+        private Button btnGenerateReport;
         private ListBox lstNotifications;
         private Label label1;
         private Label label2;
