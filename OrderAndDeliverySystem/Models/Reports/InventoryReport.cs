@@ -1,35 +1,73 @@
 using System;
 using System.Collections.Generic;
+using OrderAndDeliverySystem.Models.People;
 using OrderAndDeliverySystem.Models.Products;
 
 namespace OrderAndDeliverySystem.Models.Reports
 {
+    // InventoryReport class inherits from Report and includes specific properties related to inventory management
     public class InventoryReport : Report
     {
-        private List<Product> rankedProducts;
+        private string rankedProducts;
         private string restockFrequency;
         private string currentStockSummary;
-        private List<int> storeLocations;
+        private string storeLocations;
         private string reportPeriod;
 
-        public InventoryReport()
+
+        // Default constructor for the ProcurementReportCreator class, since in factory method,
+        // the createReport method needs to have no parameters could its the base template method for initalizing the reports
+        public InventoryReport() : base(){}
+
+        public InventoryReport(int reportID, Staff generatedBy, string title, string rankedProducts, string restockFrequency, string currentStockSummary, string storeLocations, string reportPeriod)
+        : base(reportID, generatedBy, title, string.Empty)
         {
-            rankedProducts = new List<Product>();
-            storeLocations = new List<int>();
+            this.rankedProducts = rankedProducts;
+            this.restockFrequency = restockFrequency;
+            this.currentStockSummary = currentStockSummary;
+            this.storeLocations = storeLocations;
+            this.reportPeriod = reportPeriod;
         }
 
-        public override void Generate()
+        public string RankedProducts
         {
+            get { return rankedProducts; }
+            set { rankedProducts = value; }
         }
 
-        public List<Product> GetRankedProducts()
+        public string RestockFrequency
         {
-            return rankedProducts;
+            get { return restockFrequency; }
+            set { restockFrequency = value; }
         }
 
-        public string GetCurrentStockSummary()
+        public string StoreLocations
         {
-            return currentStockSummary;
+            get { return storeLocations; }
+            set { storeLocations = value; }
         }
+
+        public string ReportPeriod
+        {
+            get { return reportPeriod; }
+            set { reportPeriod = value; }
+        }
+
+        public string CurrentStockSummary
+        {
+            get { return currentStockSummary; }
+            set { currentStockSummary = value; }
+        }
+
+        // The Generate method compiles the inventory report data into a formatted string
+        public override string Generate()
+        {
+            return "Ranked Products: " + RankedProducts + "\n" +
+                   "Restock Frequency: " + RestockFrequency + "\n" +
+                   "Current Stock Summary: " + CurrentStockSummary + "\n" +
+                   "Store Locations: " + StoreLocations + "\n" +
+                   "Report Period: " + ReportPeriod;
+        }
+
     }
 }

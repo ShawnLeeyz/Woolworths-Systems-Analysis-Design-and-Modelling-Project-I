@@ -11,18 +11,49 @@ namespace OrderAndDeliverySystem.Models.Reports
         private string title;
         private string reportData;
 
-        public Report() { }
-
-        public int GetReportID()
+        // This constructor is used for the factory method pattern, allowing for the creation of reports without needing to specify all details upfront
+        public Report() 
+        { 
+            this.dateGenerated = DateTime.Now;
+        }
+        public Report(int reportID, Staff generatedBy, string title, string reportData)
         {
-            return reportID;
+            this.reportID     = reportID;
+            this.dateGenerated = DateTime.Now; // Automatically set to current date and time when the report is created
+            this.generatedBy = generatedBy;
+            this.title        = title;
+            this.reportData   = reportData;
+
+        }
+        public int ReportID
+        {
+            get { return reportID; }
         }
 
-        public DateTime GetDateGenerated()
+        public DateTime DateGenerated
         {
-            return dateGenerated;
+            get { return dateGenerated; }
+            set { dateGenerated = value; }
         }
 
-        public abstract void Generate();
+        public Staff GeneratedBy
+        {
+            get { return generatedBy; }
+            set { generatedBy = value; }
+        }
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string ReportData
+        {
+            get { return reportData; }
+            set { reportData = value; }
+        }
+
+        public abstract string Generate();
     }
 }

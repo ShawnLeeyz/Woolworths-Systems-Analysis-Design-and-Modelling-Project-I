@@ -16,6 +16,12 @@ namespace OrderAndDeliverySystem.Models.People
             this.isAvailable = isAvailable;
         }
 
+        public Staff(int personID, string name, string email, string password,
+                    string phoneNumber, int staffID, string role, bool isAvailable)
+            : this(personID, name, email, password, staffID, role, isAvailable)
+        {
+        }   
+
         public int StaffID
         {
             get { return staffID; }

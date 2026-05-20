@@ -24,13 +24,13 @@ namespace OrderAndDeliverySystem.Data
                     Name TEXT NOT NULL,
                     Email TEXT NOT NULL,
                     Password TEXT NOT NULL,
-                    StaffId INTEGER PRIMARY KEY,
+                    StaffId INTEGER PRIMARY KEY AUTOINCREMENT,
                     Role TEXT NOT NULL,
                     IsAvailable INTEGER NOT NULL
                 );
 
                 CREATE TABLE IF NOT EXISTS Tasks (
-                    TaskId INTEGER PRIMARY KEY,
+                    TaskId INTEGER PRIMARY KEY AUTOINCREMENT,
                     Description TEXT NOT NULL,
                     DeadlineAt TEXT NOT NULL,
                     Status TEXT NOT NULL,
@@ -40,7 +40,7 @@ namespace OrderAndDeliverySystem.Data
                 );
 
                 CREATE TABLE IF NOT EXISTS Notifications (
-                    NotificationId INTEGER PRIMARY KEY,
+                    NotificationId INTEGER PRIMARY KEY AUTOINCREMENT,
                     Message TEXT NOT NULL,
                     Type TEXT NOT NULL,
                     SendAt TEXT NOT NULL,
@@ -65,14 +65,15 @@ namespace OrderAndDeliverySystem.Data
             }
 
             string sql = """
-                INSERT INTO Staff (PersonId, Name, Email, Password, StaffId, Role, IsAvailable) VALUES
-                    (101, 'Staff1', 'shift.manager', '123', 1, 'ShiftManager', 1),
-                    (102, 'Staff2', 'store.ops', '123', 2, 'StoreOperations', 1),
-                    (103, 'Staff3', 'store.manager', '123', 3, 'StoreManager', 1);
+                INSERT INTO Staff (PersonId, Name, Email, Password, Role, IsAvailable) VALUES
+                    (101, 'Staff1', 'shift.manager', '123', 'ShiftManager', 1),
+                    (102, 'Staff2', 'store.ops', '123', 'StoreOperations', 1),
+                    (103, 'Staff3', 'store.ops1', '123', 'StoreOperations', 1);
 
                 INSERT INTO Tasks (TaskId, Description, DeadlineAt, Status, CreatedAt, AssignedStaffId) VALUES
                     (2001, 'Pick and pack order 1001', '2026-05-19T08:30:00Z', 'Assigned', '2026-05-18T20:00:00Z', 2),
                     (2002, 'Check unavailable item for 1003', '2026-05-19T09:15:00Z', 'InProgress', '2026-05-18T20:05:00Z', 2);
+                    (2002, 'Check unavailable item for 1003', '2026-05-19T09:15:00Z', 'InProgress', '2026-05-18T20:05:00Z', 1);
 
                 INSERT INTO Notifications (NotificationId, Message, Type, SendAt, StaffId) VALUES
                     (3001, 'Task status update: Order 1003 has started processing.', 'IN_APP', '2026-05-18T20:10:00Z', 1),

@@ -15,14 +15,14 @@ namespace OrderAndDeliverySystem.Data.Repositories
         }
 
         // This method retrieves all tasks from the database and returns them as a list of Task objects 
-        public List<Task> GetAllTasks()
+        public List<StaffTask> GetAllTasks()
         {
             using SqliteCommand command = connection.CreateCommand();
             string sql = "SELECT * FROM Tasks";
             command.CommandText = sql;
             using SqliteDataReader reader = command.ExecuteReader(); // Execute the SQL command and get the result in a reader
 
-            List<Task> tasks = new List<Task>();
+            List<StaffTask> tasks = new List<StaffTask>();
             // Goes through each row in the result and add it into the list of tasks
             while (reader.Read())
             {
@@ -33,14 +33,14 @@ namespace OrderAndDeliverySystem.Data.Repositories
                 DateTime createdAt = DateTime.Parse(reader.GetString(4));
                 int assignedStaffId = reader.GetInt32(5);
 
-                Task task = new Task(taskId, description, deadline, status, createdAt, null);
+                StaffTask task = new StaffTask(taskId, description, deadline, status, createdAt, null);
                 tasks.Add(task);
             }
             return tasks;
         }
 
         // This method retrieves all task assigned to a specific staff 
-        public List<Task> GetTasksByStaffId(int inputStaffId)
+        public List<StaffTask> GetTasksByStaffId(int inputStaffId)
         {
             using SqliteCommand command = connection.CreateCommand();
             command.Parameters.AddWithValue("$staffId", inputStaffId);
@@ -49,7 +49,7 @@ namespace OrderAndDeliverySystem.Data.Repositories
             command.CommandText = sql;
             using SqliteDataReader reader = command.ExecuteReader();
 
-            List<Task> tasks = new List<Task>();
+            List<StaffTask> tasks = new List<StaffTask>();
             // Goes through each row in the result and add it into the list of tasks
             while (reader.Read())
             {
@@ -60,14 +60,14 @@ namespace OrderAndDeliverySystem.Data.Repositories
                 DateTime createdAt = DateTime.Parse(reader.GetString(4));
                 int assignedStaffId = reader.GetInt32(5);
 
-                Task task = new Task(taskId, description, deadline, status, createdAt, null);
+                StaffTask task = new StaffTask(taskId, description, deadline, status, createdAt, null);
                 tasks.Add(task);
             }
             return tasks;
         }
 
         // This method inserts new task into the database
-        public void InsertTask(Task task)
+        public void InsertTask(StaffTask task)
         {
             using SqliteCommand command = connection.CreateCommand();
             command.Parameters.AddWithValue("$description",     task.Description);

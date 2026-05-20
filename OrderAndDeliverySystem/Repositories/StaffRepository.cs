@@ -25,23 +25,24 @@ namespace OrderAndDeliverySystem.Data.Repositories
 
             if (!reader.Read())
             {
-                return null; // Return null if no staff member is found
+                return null!; // Return null if no staff member is found
             }
 
             // Get all the attributes of the staff member by columns
-            int personId = reader.GetInt32(1);
-            string name = reader.GetString(2);
-            string email = reader.GetString(3);
-            string password = reader.GetString(4);
-            int staffId = reader.GetInt32(0);
+            int personId = reader.GetInt32(0);
+            string name = reader.GetString(1);
+            string email = reader.GetString(2);
+            string password = reader.GetString(3);
+            int staffId = reader.GetInt32(4);
             string role = reader.GetString(5);
+            bool isAvailable;
             if(reader.GetInt32(6) == 1) // Since SQLite does not support boolean, it stores in int 0 (false) or 1 (true)
             {
-                bool isAvailable = true;
+                isAvailable = true;
             }
             else
             {
-                bool isAvailable = false;
+                isAvailable = false;
             }
 
             // Create and return the correct type of staff member 
@@ -49,14 +50,40 @@ namespace OrderAndDeliverySystem.Data.Repositories
             {
                 return new ShiftManager(personId, name, email, password, staffId, isAvailable);
             }
-            else if(role == "StoreOperationStaff")
+            else if(role == "StoreOperations")
             {
-                return new StoreOperationsStaff(personId, name, email, password, staffId, isAvailable);
+                return new StoreOperationStaff(personId, name, email, password, staffId, isAvailable);
             }
             else
             {
                 throw new Exception("Invalid role in database");
             }
+        }
+
+        // This method retrieves all staff members from the database and returns them as a list of Staff objects    
+        public List<Staff> GetAllStaff()
+        {
+            using SqliteCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Staff";
+            using SqliteDataReader reader = command.ExecuteReader();
+
+            List<Staff> staffList = new List<Staff>();
+            while (reader.Read())
+            {
+                int personId = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string email = reader.GetString(2);
+                string password = reader.GetString(3);
+                int staffId = reader.GetInt32(4);
+                string role = reader.GetString(5);
+                bool isAvailable = reader.GetInt32(6) == 1;
+
+                if (role == "ShiftManager")
+                    staffList.Add(new ShiftManager(personId, name, email, password, staffId, isAvailable));
+                else if (role == "StoreOperations")
+                    staffList.Add(new StoreOperationStaff(personId, name, email, password, staffId, isAvailable));
+            }
+            return staffList;
         }
     }
 }

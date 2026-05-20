@@ -1,61 +1,68 @@
-using System;
-using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
+using OrderAndDeliverySystem.Services;
+using OrderAndDeliverySystem.Models.People;
+using OrderAndDeliverySystem.Models.Store;
 
-namespace OrderAndDeliverySystem
+namespace OrderAndDeliverySystem.Forms
 {
-    public class ShiftManagerForm : Form
+    public partial class ShiftManagerForm : Form
     {
-        public ShiftManagerForm()
+        private TaskService taskService;
+        private NotificationService notificationService;
+        private ShiftManager shiftManager;
+
+        public ShiftManagerForm(Staff staff)
         {
-            Text = "Shift Manager Dashboard";
-            StartPosition = FormStartPosition.CenterScreen;
-            WindowState = FormWindowState.Maximized;
-            FormBorderStyle = FormBorderStyle.None;
-            Load += ShiftManagerForm_Load;
+            InitializeComponent();
+            taskService = new TaskService();
+            notificationService = new NotificationService();
+            shiftManager = (ShiftManager)staff;
+            LoadTasks();
+            LoadNotifications();
         }
 
-        private void ShiftManagerForm_Load(object? sender, EventArgs e)
+        // Load all tasks into the DataGridView
+        private void LoadTasks()
         {
-            Controls.Clear();
+            List<StaffTask> tasks = taskService.GetAllTasks();
+            dgvTasks.DataSource = null;
+            dgvTasks.DataSource = tasks;
+        }
 
-            Label title = new Label
+        // Load notifications into the ListBox
+        private void LoadNotifications()
+        {
+            var notifications = notificationService.GetNotifications(shiftManager.StaffID);
+            lstNotifications.Items.Clear();
+            foreach (var n in notifications)
             {
-                Text = "Shift Manager Dashboard",
-                Font = new Font("Arial", 28, FontStyle.Bold),
-                Size = new Size(520, 45),
-                Location = new Point(60, 40)
-            };
+                lstNotifications.Items.Add($"[{n.SentAt:HH:mm}] {n.Message}");
+            }
+        }
 
-            Label summary = new Label
-            {
-                Text = "Step 1 complete: this screen will manage task assignment, overdue tasks, and notifications.",
-                Font = new Font("Arial", 12, FontStyle.Regular),
-                Size = new Size(900, 30),
-                Location = new Point(60, 100)
-            };
+        // Refresh button
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTasks();
+            LoadNotifications();
+        }
 
-            ListBox taskPreview = new ListBox
-            {
-                Size = new Size(500, 220),
-                Location = new Point(60, 160)
-            };
-            taskPreview.Items.Add("Demo task queue");
-            taskPreview.Items.Add("Order #1001 - Assign picker");
-            taskPreview.Items.Add("Order #1002 - Reassign overdue pick-and-pack");
+            // Assign task button
+        private void btnAssignTask_Click(object sender, EventArgs e)
+        {
+            // TODO: open AssignTaskForm
+            AssignTaskForm assignTaskForm = new AssignTaskForm(shiftManager);
+            assignTaskForm.ShowDialog();
+            LoadTasks();
+        }
 
-            Button logoutButton = new Button
-            {
-                Text = "Logout",
-                Size = new Size(140, 36),
-                Location = new Point(60, 410)
-            };
-            logoutButton.Click += (_, _) => Close();
-
-            Controls.Add(title);
-            Controls.Add(summary);
-            Controls.Add(taskPreview);
-            Controls.Add(logoutButton);
+        private void btnReassignTask_Click(object sender, EventArgs e)
+        {
+            // TODO: open ReassignTaskForm
+            ReassignTaskForm reassignTaskForm = new ReassignTaskForm(shiftManager);
+            reassignTaskForm.ShowDialog();
+            LoadTasks();
         }
     }
 }
